@@ -3,6 +3,12 @@
 
 Integrantes:
 
+Matheus Gianolli — RM: 565258
+Enzo Xavier Coelho — RM: 563379
+Gustavo Ribeiro Permagnani — RM: 564995
+Larissa Juvenal de Magalhaes — RM: 566457
+Julia Menezes — RM: 565568
+
 ##  Visão Geral do Projeto
 O Orion Beacon é um sistema de Internet das Coisas (IoT) desenvolvido para a monitoração em tempo real das condições de solo na Cratera A-17 (Lua). O sistema analisa a temperatura e os índices de hidratação do solo, classificando o estado da água local para futuras missões de extração.
 
