@@ -35,7 +35,7 @@ Atendendo aos requisitos de arquitetura distribuída, o ESP32 publica telemetria
 Para testar o sistema completo do zero, siga os passos abaixo:
 
 **1. Ligar o Hardware (Simulação):**
-- Acesse o link público do projeto no Wokwi: https://wokwi.com/projects/465954654353615873
+- Acesse o link público do projeto no Wokwi:https://wokwi.com/projects/465954654353615873
 - Clique no botão verde **"Play"** para iniciar a simulação.
 - Aguarde o terminal exibir `Wi-Fi Conectado!` e os logs de telemetria iniciarem.
 
