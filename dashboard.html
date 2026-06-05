@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Orion Beacon - Dashboard Lunar</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: white; text-align: center; padding-top: 10vh; }
+        .card { background: #1e293b; border: 2px solid #334155; border-radius: 15px; padding: 30px; width: 350px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        h1 { color: #f8fafc; font-size: 24px; margin-bottom: 5px; }
+        .status-box { background: #0ea5e9; color: #fff; font-size: 22px; font-weight: bold; padding: 10px; border-radius: 8px; margin: 20px 0; }
+        .dado { font-size: 18px; margin: 10px 0; color: #cbd5e1; }
+        .valor { font-weight: bold; color: #38bdf8; font-size: 20px; }
+    </style>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🚀 Orion Beacon</h1>
+        <p style="color: #94a3b8; font-size: 14px; margin-top: 0;">Telemetria via Rede MQTT</p>
+        
+        <div class="status-box" id="status" style="background: #f59e0b;">Conectando ao Servidor...</div>
+        
+        <div class="dado">Temperatura: <span class="valor" id="temp">--</span> °C</div>
+        <div class="dado">Hidratação: <span class="valor" id="hidra">--</span></div>
+    </div>
+
+    <script>
+        // Conecta no HiveMQ via WebSocket Seguro (Porta 8884 - Aprovado pelo Navegador)
+        const client = mqtt.connect('wss://broker.hivemq.com:8884/mqtt');
+
+        client.on('connect', function () {
+            document.getElementById('status').innerText = "Aguardando Sensores...";
+            // Entra no seu canal exclusivo
+            client.subscribe('fiap/orion/gianolli');
+        });
+
+        // Quando chega uma mensagem do Wokwi, a tela atualiza
+        client.on('message', function (topic, message) {
+            try {
+                const info = JSON.parse(message.toString());
+                
+                document.getElementById('status').innerText = info.status;
+                document.getElementById('temp').innerText = info.temp;
+                document.getElementById('hidra').innerText = info.hidra;
+
+                // Cores dinâmicas
+                const statusBox = document.getElementById('status');
+                if(info.status.includes("H2O LIQ")) statusBox.style.background = "#10b981"; // Verde
+                else if(info.status.includes("GELO")) statusBox.style.background = "#38bdf8"; // Azul
+                else statusBox.style.background = "#ef4444"; // Vermelho
+            } catch (e) {
+                console.log("Processando dados...");
+            }
+        });
+    </script>
+</body>
+</html>
