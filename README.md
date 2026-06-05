@@ -1,5 +1,8 @@
 #  Orion Beacon - Monitoramento Lunar IoT
 
+
+Integrantes:
+
 ##  Visão Geral do Projeto
 O Orion Beacon é um sistema de Internet das Coisas (IoT) desenvolvido para a monitoração em tempo real das condições de solo na Cratera A-17 (Lua). O sistema analisa a temperatura e os índices de hidratação do solo, classificando o estado da água local para futuras missões de extração.
 
