@@ -13,19 +13,19 @@ Julia Menezes — RM: 565568
 O Orion Beacon é um sistema de Internet das Coisas (IoT) desenvolvido para a monitoração em tempo real das condições de solo na Cratera A-17 (Lua). O sistema analisa a temperatura e os índices de hidratação do solo, classificando o estado da água local para futuras missões de extração.
 
 ##  Arquitetura e Tecnologias
-Para garantir a entrega de dados em tempo real sem problemas de bloqueio de rede (CORS/Firewall), a comunicação foi construída com arquitetura híbrida:
+Para garantir a entrega de dados em tempo real sem problemas de bloqueio de rede, a comunicação foi construída com arquitetura híbrida:
 - **Hardware/Simulador:** ESP32, Sensor DHT22, Potenciômetro e Display LCD I2C.
 - **Protocolo de Tempo Real:** MQTT via WebSockets seguros (HiveMQ).
-- **Interface (Front-end):** Dashboard local em HTML/JS com atualização assíncrona.
+- **Interface (Front-end):** Dashboard local em HTML/JS com atualização .
 
 ##  Endpoints e Tópicos MQTT
 Atendendo aos requisitos de arquitetura distribuída, o ESP32 publica telemetria no formato JSON em **3 tópicos MQTT distintos** no broker público `broker.hivemq.com`:
 
-1. **`fiap/orion/gianolli`** (Status Consolidado)
+1. **`fiap/orion/gianolli`** 
    - *Payload:* `{"temp":"25.0", "hidra":"0.80", "status":"ALTA: H2O LIQ"}`
-2. **`fiap/orion/gianolli/temperatura`** (Dado Bruto Termal)
+2. **`fiap/orion/gianolli/temperatura`
    - *Payload:* `{"temperaturaC": 25.0}`
-3. **`fiap/orion/gianolli/hidratacao`** (Dado Bruto Capacitivo)
+3. **`fiap/orion/gianolli/hidratacao`
    - *Payload:* `{"indiceHidratacao": 0.80}`
 
 ---
